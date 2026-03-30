@@ -1,0 +1,28 @@
+name: Deploy Flask App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Stop existing Flask app
+        run: |
+          pkill -f app.py || true
+
+      - name: Deploy latest code to VM folder
+        run: |
+          rsync -av --delete ./ ~/filehealth/
+
+      - name: Start Flask app
+        run: |
+          cd ~/filehealth
+          source venv/bin/activate
+          nohup python app.py > app.log 2>&1 &
