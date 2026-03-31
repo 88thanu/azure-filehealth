@@ -29,10 +29,20 @@ jobs:
           pip install --upgrade pip
           pip install flask
 
+      - name: Stop existing Flask app
+        run: |
+          pkill -f app.py || true
+          sleep 2
+
       - name: Start Flask app
         run: |
           cd ~/filehealth
           python3 -m venv venv || true
+          
           ~/filehealth/venv/bin/pip install flask || true
+
+          screen -wipe || true
           
           screen -dmS flaskapp bash -c "~/filehealth/venv/bin/python ~/filehealth/app.py > ~/filehealth/screen.log 2>&1"
+
+          sleep 3
