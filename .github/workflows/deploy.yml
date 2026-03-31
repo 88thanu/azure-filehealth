@@ -43,6 +43,6 @@ jobs:
 
           screen -wipe || true
           
-          screen -dmS flaskapp bash -c "~/filehealth/venv/bin/python ~/filehealth/app.py > ~/filehealth/screen.log 2>&1"
+          screen -dmS flaskapp bash -c "cd ~/filehealth && ~/filehealth/venv/bin/python app.py > screen.log 2>&1; exec bash"
 
           sleep 3
