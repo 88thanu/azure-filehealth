@@ -35,4 +35,4 @@ jobs:
           python3 -m venv venv || true
           ~/filehealth/venv/bin/pip install flask || true
           
-          screen -dmS flaskapp ~/filehealth/venv/bin/python ~/filehealth/app.py
+          screen -dmS flaskapp bash -c "~/filehealth/venv/bin/python ~/filehealth/app.py > ~/filehealth/screen.log 2>&1"
