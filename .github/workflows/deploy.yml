@@ -21,6 +21,14 @@ jobs:
         run: |
           rsync -av --delete ./ ~/filehealth/
 
+      - name: Setup Python environment
+        run: |
+          cd ~/filehealth
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install flask
+
       - name: Start Flask app
         run: |
           cd ~/filehealth
