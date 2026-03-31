@@ -33,7 +33,6 @@ jobs:
         run: |
           cd ~/filehealth
           python3 -m venv venv || true
-          source venv/bin/activate
-          pip install -r requirements.txt || pip install flask
+          ~/filehealth/venv/bin/pip install flask || true
           
-          screen -dmS flaskapp bash -c "cd ~/filehealth && source venv/bin/activate && python app.py"
+          screen -dmS flaskapp ~/filehealth/venv/bin/python ~/filehealth/app.py
