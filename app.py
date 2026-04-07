@@ -44,7 +44,7 @@ def _build_auth_url():
         client_credential=CLIENT_SECRET,
     ).get_authorization_request_url(
         SCOPE,
-        redirect_uri=request.host_url + "getAToken"
+        redirect_uri=request.host_url.replace("http://", "https://") + "getAToken"
     )
 
 def _get_token_from_code(code):
@@ -55,7 +55,7 @@ def _get_token_from_code(code):
     ).acquire_token_by_authorization_code(
         code,
         scopes=SCOPE,
-        redirect_uri=request.host_url + "getAToken"
+        redirect_uri=request.host_url.replace("http://", "https://") + "getAToken"
     )
 
 if __name__ == "__main__":
