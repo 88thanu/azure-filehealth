@@ -5,6 +5,8 @@ import os
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
 
+print("TENANT_ID:", os.environ.get("TENANT_ID"))
+
 # 🔹 Replace these with YOUR values
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 CLIENT_ID = os.environ.get("CLIENT_ID")
